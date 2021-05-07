@@ -5,24 +5,24 @@ import java.util.Random;
 
 public class SampleGenerator {
 
-    public static Integer[] generateIncreasingArray(int size) {
-        Integer[] arr = new Integer[size];
+    public static int[] generateIncreasingArray(int size) {
+        int[] arr = new int[size];
         for (int i = 0; i < size; i++) {
             arr[i] = i;
         }
         return arr;
     }
 
-    public static Integer[] generateDecreasingArray(int size) {
-        Integer[] arr = new Integer[size];
+    public static int[] generateDecreasingArray(int size) {
+        int[] arr = new int[size];
         for (int i = 0; i < size; i++) {
             arr[i] = size - i - 1;
         }
         return arr;
     }
 
-    public static Integer[] generateRandom(int size, int max) {
-        Integer[] arr = new Integer[size];
+    public static int[] generateRandom(int size, int max) {
+        int[] arr = new int[size];
         Random rand = new Random();
         for (int i = 0; i < size; i++) {
             arr[i] = rand.nextInt(max);
@@ -30,8 +30,8 @@ public class SampleGenerator {
         return arr;
     }
 
-    public static Integer[] generateEqual(int size) {
-        Integer[] arr = new Integer[size];
+    public static int[] generateEqual(int size) {
+        int[] arr = new int[size];
         Arrays.fill(arr, 42);
         return arr;
     }

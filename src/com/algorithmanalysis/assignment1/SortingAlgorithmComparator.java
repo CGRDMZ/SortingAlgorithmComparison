@@ -1,16 +1,14 @@
 package com.algorithmanalysis.assignment1;
 
-import java.util.Arrays;
-import java.util.HashMap;
 
 public class SortingAlgorithmComparator {
-    enum SampleType {
+    public enum SampleType {
         EQUAL,
         RANDOM,
         INCREASING,
         DECREASING,
     }
-    enum SortingAlgorithm {
+    public enum SortingAlgorithm {
         HEAP_SORT,
         DUAL_PIVOT_QUICKSORT,
         BUCKET_SORT,
@@ -38,26 +36,9 @@ public class SortingAlgorithmComparator {
                 }
             }
         }
-//        int[] sizes = new int[] {1000, 10000, 100000};
-//        for (int size :
-//                sizes) {
-//            Integer[] arr = new Integer[size];
-//            for (SampleType type :
-//                    SampleType.values()) {
-//                switch (type) {
-//                    case EQUAL -> {
-//                        arr = SampleGenerator.generateEqual(size);
-//                        long runtime = getRuntime(SortingAlgorithm.BUCKET_SORT, arr);
-//                        results.put(SortingAlgorithm.BUCKET_SORT, )
-//
-//                    }
-//                }
-//            }
-//        }
-
     }
 
-    public long getRuntime(SortingAlgorithm algorithm, Integer[] arr) {
+    public long getRuntime(SortingAlgorithm algorithm, int[] arr) {
         switch (algorithm) {
             case HEAP_SORT -> {
                 long start = System.nanoTime();

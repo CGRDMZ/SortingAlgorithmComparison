@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class SortingClass {
-    public static void heapSort(Integer[] arrayToSort) {
+    public static void heapSort(int[] arrayToSort) {
         int size = arrayToSort.length;
 
         //heapify the array
@@ -24,7 +24,7 @@ public class SortingClass {
 
     }
 
-    private static void heapify(Integer[] array, int size, int root) {
+    private static void heapify(int[] array, int size, int root) {
         int largest = root;
         int left = 2 * root + 1;
         int right = 2 * root + 2;
@@ -44,33 +44,36 @@ public class SortingClass {
 
     }
 
-    public static void printArray(Integer[] array) {
+    public static void printArray(int[] array) {
         System.out.println(Arrays.toString(array));
     }
 
-    public static void swap(Integer[] arr, int i, int j) {
+    public static void swap(int[] arr, int i, int j) {
         int temp = arr[i];
         arr[i] = arr[j];
         arr[j] = temp;
     }
 
-    public static void dualPivotQuickSort(Integer[] arrayToSort) {
+    public static void dualPivotQuickSort(int[] arrayToSort) {
         dualPivotQuickSort(arrayToSort, 0, arrayToSort.length - 1);
     }
 
-    private static void dualPivotQuickSort(Integer[] arr,
+    private static void dualPivotQuickSort(int[] arr,
                                            int low, int high) {
         if (low < high) {
             // partition returns two pivot values and we store them in an array.
             int[] piv;
             piv = partition(arr, low, high);
+            // sort between low and first pivot
             dualPivotQuickSort(arr, low, piv[0] - 1);
+            // sort between the two pivots
             dualPivotQuickSort(arr, piv[0] + 1, piv[1] - 1);
+            // sort between the second pivot and last.
             dualPivotQuickSort(arr, piv[1] + 1, high);
         }
     }
 
-    private static int[] partition(Integer[] arr, int low, int high) {
+    private static int[] partition(int[] arr, int low, int high) {
         if (arr[low] > arr[high])
             swap(arr, low, high);
 
@@ -105,7 +108,7 @@ public class SortingClass {
         return new int[]{j, g};
     }
 
-    public static void bucketSort(Integer[] arrayToSort) {
+    public static void bucketSort(int[] arrayToSort) {
         // find the maximum value in the array
         int max = Integer.MIN_VALUE;
         for (int num : arrayToSort) {
@@ -121,7 +124,7 @@ public class SortingClass {
      * @param arrayToSort the array you would like to sort
      * @param maxVal provide it if it is already known, otherwise will be calculated.
      */
-    public static void bucketSort(Integer[] arrayToSort, int maxVal) {
+    public static void bucketSort(int[] arrayToSort, int maxVal) {
         int bucketSize = 5;
         int interval = maxVal / bucketSize + 1;
 
@@ -139,7 +142,7 @@ public class SortingClass {
 
         for (ArrayList<Integer> bucket :
                 buckets) {
-            Integer[] newArray = bucket.toArray(new Integer[0]);
+            int[] newArray = Arrays.stream(bucket.toArray(new Integer[0])).mapToInt(i -> i).toArray();
             insertionSort(newArray);
             bucket.clear();
             for (Integer i :
@@ -162,15 +165,13 @@ public class SortingClass {
         }
     }
 
-    private static void insertionSort(Integer[] arr) {
+    private static void insertionSort(int[] arr) {
         int size = arr.length;
         for (int i = 1; i < size; ++i) {
             int val = arr[i];
             int j = i - 1;
 
-            /* Move elements of arr[0..i-1], that are
-               greater than key, to one position ahead
-               of their current position */
+            // shift all items until the key is in the right place
             while (j >= 0 && arr[j] > val) {
                 arr[j + 1] = arr[j];
                 j = j - 1;

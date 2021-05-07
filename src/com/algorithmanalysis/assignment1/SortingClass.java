@@ -2,7 +2,6 @@ package com.algorithmanalysis.assignment1;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.stream.Collectors;
 
 public class SortingClass {
     public static void heapSort(Integer[] arrayToSort) {
@@ -62,6 +61,7 @@ public class SortingClass {
     private static void dualPivotQuickSort(Integer[] arr,
                                            int low, int high) {
         if (low < high) {
+            // partition returns two pivot values and we store them in an array.
             int[] piv;
             piv = partition(arr, low, high);
             dualPivotQuickSort(arr, low, piv[0] - 1);
@@ -105,13 +105,29 @@ public class SortingClass {
         return new int[]{j, g};
     }
 
+    public static void bucketSort(Integer[] arrayToSort) {
+        // find the maximum value in the array
+        int max = Integer.MIN_VALUE;
+        for (int num : arrayToSort) {
+            if (num > max) {
+                max = num;
+            }
+        }
+        bucketSort(arrayToSort, max);
+    }
 
+    /**
+     *
+     * @param arrayToSort the array you would like to sort
+     * @param maxVal provide it if it is already known, otherwise will be calculated.
+     */
     public static void bucketSort(Integer[] arrayToSort, int maxVal) {
         int bucketSize = 5;
-        int interval = maxVal / bucketSize;
+        int interval = maxVal / bucketSize + 1;
 
         ArrayList<Integer>[] buckets = new ArrayList[bucketSize];
 
+        // init buckets
         for (int i = 0; i < bucketSize; i++) {
             buckets[i] = new ArrayList<Integer>();
         }

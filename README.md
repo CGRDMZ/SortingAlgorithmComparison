@@ -1,6 +1,6 @@
-# Results on my machine (time unit is nanosecond)
+# Results on my machine 
 
-**ALGORITHM | DATASET | SIZE | RUNTIME**
+**ALGORITHM | DATASET | SIZE | RUNTIME (nanosecond)**
 
 HEAP_SORT | EQUAL | 1000 | time: 1877942
 
